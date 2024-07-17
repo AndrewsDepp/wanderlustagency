@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museo 360</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
+    <link rel="stylesheet" href="css/stylesmuseo360.css">
+</head>
+<body>
+<a-scene>
+
+    <div class="circular-button yellow-button" onclick="openNewInstructions()">
+        i
+    </div>
+
+    <a-assets>
+        <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+        <audio id="background-music" src="soundmuseo360/classic.mp3" loop></audio>
+        <img id="city" src="imagesmuseo360/2k.png">
+        <img id="painting1-thumb" src="imagesmuseo360/pic1.jpg">
+        <img id="painting2-thumb" src="imagesmuseo360/pic2.jpg">
+        <img id="painting3-thumb" src="imagesmuseo360/pic3.jpg">
+        <img id="painting4-thumb" src="imagesmuseo360/pic4.jpg">
+        <img id="painting5-thumb" src="imagesmuseo360/pic5.jpg">
+        <img id="painting6-thumb" src="imagesmuseo360/pic6.jpg">
+        <img id="painting7-thumb" src="imagesmuseo360/pic7.jpg">
+        <img id="painting8-thumb" src="imagesmuseo360/pic8.jpg">
+        <img id="painting9-thumb" src="imagesmuseo360/pic9.jpg">
+        <img id="painting10-thumb" src="imagesmuseo360/pic10.jpg">
+        <img id="painting11-thumb" src="imagesmuseo360/pic11.jpg">
+        <img id="painting12-thumb" src="imagesmuseo360/pic12.jpg">
+        <img id="painting13-thumb" src="imagesmuseo360/pic13.jpg">
+        <img id="painting14-thumb" src="imagesmuseo360/pic14.jpg">
+        <img id="painting15-thumb" src="imagesmuseo360/pic15.jpg">
+        <img id="painting16-thumb" src="imagesmuseo360/pic16.jpg">
+        <img id="painting17-thumb" src="imagesmuseo360/pic17.jpg">
+        <img id="painting18-thumb" src="imagesmuseo360/pic18.jpg">
+        <img id="painting19-thumb" src="imagesmuseo360/pic19.jpg">
+        <img id="painting20-thumb" src="imagesmuseo360/pic20.jpg">
+    </a-assets>
+
+    <a-sky id="image-360" radius="10" src="#city"></a-sky>
+
+    <a-entity id="links" layout="type: box; columns: 5; margin: 2.5" position="-6 0 -6">
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting1-thumb" data-id="1" class="clickable" onclick="openModal(1); readFromFile('info/1.txt')"></a-box>
+            <a-text value="LIMITES" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="LIMITES" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting2-thumb" data-id="2" class="clickable" onclick="openModal(2); readFromFile('info/2.txt')"></a-box>
+            <a-text value="EL VUELO DEL CONDOR" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="EL VUELO DEL CONDOR" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting3-thumb" data-id="3" class="clickable" onclick="openModal(3); readFromFile('info/3.txt')"></a-box>
+            <a-text value="CANOPY" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="CANOPY" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting4-thumb" data-id="4" class="clickable" onclick="openModal(4); readFromFile('info/4.txt')"></a-box>
+            <a-text value="ZIPLINE" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="ZIPLINE" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting5-thumb" data-id="5" class="clickable" onclick="openModal(5); readFromFile('info/5.txt')"></a-box>
+            <a-text value="RAFTING" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="RAFTING" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting6-thumb" data-id="6" class="clickable" onclick="openModal(6); readFromFile('info/6.txt')"></a-box>
+            <a-text value="PARAPENTE" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="PARAPENTE" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting7-thumb" data-id="7" class="clickable" onclick="openModal(7); readFromFile('info/7.txt')"></a-box>
+            <a-text value="PAILON DEL DIABLO" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="PAILON DEL DIABLO" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting8-thumb" data-id="8" class="clickable" onclick="openModal(8); readFromFile('info/8.txt')"></a-box>
+            <a-text value="PUENTING" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="PUENTING" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting9-thumb" data-id="9" class="clickable" onclick="openModal(9); readFromFile('info/9.txt')"></a-box>
+            <a-text value="ANIMAL PARK" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="ANIMAL PARK" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting10-thumb" data-id="10" class="clickable" onclick="openModal(10); readFromFile('info/10.txt')"></a-box>
+            <a-text value="FABRICA DE CHOCOLATE" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="FABRICA DE CHOCOLATE" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+    </a-entity>
+    
+
+    <a-entity id="links" layout="type: box; columns: 5; margin: 2.5" position="-6 0 6">
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting11-thumb" data-id="11" class="clickable" onclick="openModal(11); readFromFile('info/11.txt')"></a-box>
+            <a-text value="BOSQUE ENCANTADO" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="BOSQUE ENCANTADO" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting12-thumb" data-id="12" class="clickable" onclick="openModal(12); readFromFile('info/12.txt')"></a-box>
+            <a-text value="ALDEA DUENDES" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="ALDEA DUENDES" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting13-thumb" data-id="13" class="clickable" onclick="openModal(13); readFromFile('info/13.txt')"></a-box>
+            <a-text value="PHOTO CAMP" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="PHOTO CAMP" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting14-thumb" data-id="14" class="clickable" onclick="openModal(14); readFromFile('info/14.txt')"></a-box>
+            <a-text value="BASILICA" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="BASILICA" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting15-thumb" data-id="15" class="clickable" onclick="openModal(15); readFromFile('info/15.txt')"></a-box>
+            <a-text value="TREKING AL VOLCAN" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="TREKING AL VOLCAN" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting16-thumb" data-id="16" class="clickable" onclick="openModal(16); readFromFile('info/16.txt')"></a-box>
+            <a-text value="DINOSAURIOS PARK" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="DINOSAURIOS PARK" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting17-thumb" data-id="17" class="clickable" onclick="openModal(17); readFromFile('info/17.txt')"></a-box>
+            <a-text value="MANOS DE DIOS" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="MANOS DE DIOS" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting18-thumb" data-id="18" class="clickable" onclick="openModal(18); readFromFile('info/18.txt')"></a-box>
+            <a-text value="CASA DEL ÁRBOL" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="CASA DEL ÁRBOL" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting19-thumb" data-id="19" class="clickable" onclick="openModal(19); readFromFile('info/19.txt')"></a-box>
+            <a-text value="ECO ZOOLÓGICO" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="ECO ZOOLÓGICO" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        <a-entity>
+            <a-box color="#FDFEFE" depth="0.1" height="2" width="1" material="src: #painting20-thumb" data-id="20" class="clickable" onclick="openModal(20); readFromFile('info/20.txt')"></a-box>
+            <a-text value="MUSEO 360" align="center" position="0 -1.2 0" color="#000000"></a-text>
+            <a-text value="MUSEO 360" align="center" position="0 -1.2 0" color="#000000" rotation="0 180 0"></a-text>
+        </a-entity>
+        
+       
+        
+    </a-entity>
+
+    <a-camera id="camera" wasd-controls="enabled: true" look-controls="enabled: true" position="0 1.6 0">
+        <a-cursor id="cursor" color="white" scale="0.5 0.5 0.5"></a-cursor>
+    </a-camera>
+</a-scene>
+
+<!-- Ventana de Instrucciones -->
+<div id="ventana_instrucciones" class="ventana_instrucciones">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeInstructions()"></div>
+        <h2 class="titulo_welcome">¡Bienvenido/a!</h2>
+        <p class="text_welcome"> Nos alegra que hayas elegido confiar en nosotros. Hoy tendrás la oportunidad de unirte a nuestro emocionante recorrido y descubrir todo lo que Baños de Agua Santa tiene para ofrecer.</p>
+        <ul>
+            <li>Usa las teclas W-A-S-D para moverte a lo largo del museo.</li>
+            <li>Usa el ratón para cambiar la vista de la cámara.</li>
+            <li>Con el puntero, centrado en la pantalla y de color blanco, apunta la imagen que deseas ver y haz clic izquierdo para desplegar la información.</li>
+            <li>Para desactivar la música de fondo, presiona la tecla M en tu teclado.</li>
+            <li>Para cerrar la ventana de información, presiona la tecla Esc.</li>
+            <li>Para visualizar las instrucciones nuevamente, presiona la tecla I en tu teclado.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Nueva Ventana de Instrucciones -->
+<div id="nueva_ventana_instrucciones" class="ventana_instrucciones">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeNewInstructions()"></div>
+        <h2>Instrucciones</h2>
+        <ul>
+            <li>Usa las teclas W-A-S-D para moverte a lo largo del museo.</li>
+            <li>Usa el ratón para cambiar la vista de la cámara.</li>
+            <li>Con el puntero color blanco en el centro de la pantalla, apunta la imagen que deseas ver y secciona con click izquierdo para desplegar la información.</li>
+            <li>Para desactivar la música de fondo, presiona la tecla M en tu teclado.</li>
+            <li>Para cerrar la ventana de información, presiona la tecla Esc.</li>
+            <li>Para visualizar las instrucciones nuevamente, presiona I en tu teclado.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Ventanas informativas -->
+<div id="ventana_info1" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>LIMITES</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic1.jpg" alt="LIMITES">
+            <div>
+                <p>Este sitio es conocido por su belleza natural, aguas termales y actividades turísticas para todos los gustos. Baños de agua santa se ubica en la provincia de Tungurahua. Limita:</p>
+                <ul>
+                    <li>Al norte con la provincia de Napo</li>
+                    <li>Al sur con las provincias de Chimborazo y Morona Santiago</li>
+                    <li>Al este con la provincia de Pastaza</li>
+                    <li>Al oeste con los cantones Patate y Pelileo</li>
+                </ul>
+            </div>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/1.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info2" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>EL VUELO DEL CÓNDOR</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic2.jpg" alt="EL VUELO DEL CÓNDOR">
+            <p>Es un sitio ubicado en la comunidad Santa Rosa de Runtún, a 20 minutos de la ciudad de Baños. Allí podrás encontrar columpios extremos, destacando los mega columpios de 40 metros y 60 metros de péndulo, conocidos como "la Bella" y "la Bestia", respectivamente. Son considerados unos de los columpios más extremos de la ciudad de Baños.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/2.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info3" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>CANOPY</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic3.jpg" alt="CANOPY">
+            <p>Otro lugar ideal para realizar actividades extremas en el área es Puntzan Canopy. Allí podrás realizar actividades como canopy o canyoning, las cuales son características principalmente en el descenso de barrancos. La actividad consiste en superar los cambios del recorrido del río, ya sea caminando, deslizándote en toboganes de roca o rapelando cascadas con ayuda de una cuerda fija. Este lugar se encuentra ubicado en San Antonio de Puntzan, Km 5 vía a Runtún. En Baños, esta actividad generalmente se realiza también en otras cascadas como la Chamana, San Jorge, Río Blanco y Cashaurco.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/3.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info4" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>ZIPLINE</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic4.jpg" alt="ZIPLINE">
+            <p>El Mega Parque de Aventura Río Blanco es un parque de actividades de aventura donde puedes realizar Zipline, un descenso por cables de acero lleno de adrenalina. Los cables tienen entre 550 y 700 metros de longitud y conectan dos puntos de montañas opuestas. El Mega Parque de Aventura Río Blanco está ubicado en Río Blanco, una comunidad del cantón Baños, a 20 minutos de Baños de Agua Santa, en la vía al Puyo.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/4.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info5" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>RAFTING</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic5.jpg" alt="RAFTING">
+            <p>Otra de las actividades que se puede realizar en Baños es el rafting o balsismo, un deporte acuático que se practica en equipo sobre ríos caudalosos, también llamados rápidos. Se requiere una balsa y equipos profesionales. En la zona de Baños, este deporte se practica en el río Pastaza, en el sector oriental de la ciudad, partiendo desde San Francisco o desde el sector de La Penal (Río Negro). Los paisajes selváticos que se pueden apreciar al realizar este deporte en el río Pastaza son únicos.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/5.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info6" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>PARAPENTE</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic6.jpg" alt="PARAPENTE">
+            <p>Otra opción que tienes en Baños es realizar un vuelo en parapente, una experiencia emocionante y maravillosa que ofrece increíbles vistas de la selva desde lo alto. Baños es la puerta de entrada a la Amazonía ecuatoriana y está cerca del volcán Tungurahua, lo que permite disfrutar de paisajes impresionantes al volar en parapente. Existen agencias turísticas en la ciudad que ofrecen este tipo de tours, incluyendo vuelos en tándem con pilotos e instructores calificados, sin necesidad de experiencia previa.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/6.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info7" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>EL PAILÓN DEL DIABLO</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic7.jpg" alt="EL PAILÓN DEL DIABLO">
+            <p>Una de las cascadas más conocidas de Baños es El Pailón del Diablo, ubicada a 17 kilómetros de la ciudad de Baños de Agua Santa, específicamente en la parroquia de Río Verde. También conocida como Cascada Río Verde, tiene una altura de 80 metros y una profundidad de 20 metros. Para llegar a esta cascada, se puede seguir senderos establecidos con aproximadamente una hora de caminata por la ruta larga o 30 minutos por la ruta corta.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/7.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info8" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>PUENTING</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic8.jpg" alt="PUENTING">
+            <p>El puenting o puentismo es una actividad en la cual una persona se lanza al vacío desde la altura que ofrece un puente. La caída libre dura unos segundos y luego
+
+, dependiendo de la altura, se experimenta un balanceo pendular. Esta actividad se practica en los puentes de San Francisco, ubicado frente al Terminal Terrestre, y en Río Blanco, vía al Puyo, a 2 km más abajo de la cascada de Agoyán.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/8.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info9" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>ANIMAL PARK PARQUE TEMÁTICO</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic9.jpg" alt="ANIMAL PARK PARQUE TEMÁTICO">
+            <p>Animal Park es un parque temático donde los niños pueden interactuar con una colección de aproximadamente 250 especies de animales. El parque incluye fauna autóctona, representativa de otras partes del mundo y fauna silvestre, como aves, búfalos africanos, vacas miniatura, caballos pura sangre, venados de cola blanca y leones africanos.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/9.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info10" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>FÁBRICA DE CHOCOLATE</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic10.jpg" alt="FÁBRICA DE CHOCOLATE">
+            <p>La fábrica de chocolates es un lugar diseñado para niños en Baños de Agua Santa, donde pueden disfrutar de una cocina interactiva y divertida. El lugar cuenta con una chocolatería, heladería, pastelería y cafetería, ofreciendo momentos divertidos mientras aprenden sobre el proceso de fabricación de chocolate.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/10.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info11" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>EL BOSQUE ENCANTADO</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic11.jpg" alt="EL BOSQUE ENCANTADO">
+            <p>El Bosque Encantado es un parque temático medieval en Baños que ofrece atracciones para todas las edades. Con 4.000 metros cuadrados, podrás disfrutar de una experiencia única en medio de un bosque antiguo, con construcciones fuera de serie y jardines exóticos que te transportarán a otro mundo.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/11.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info12" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>LA ALDEA MÁGICA DE DUENDES</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic12.jpg" alt="LA ALDEA MÁGICA DE DUENDES">
+            <p>La Aldea de los Duendes es un paseo educativo que fomenta la conciencia ecológica. Los visitantes pueden explorar el mundo mágico de seres como duendes, gnomos, hadas y elfos, considerados los primeros ecologistas según la mitología. Este lugar ofrece una experiencia única en contacto con la naturaleza y la magia.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/12.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info13" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>PIQCHUR PHOTO CAMP</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic13.jpg" alt="PIQCHUR PHOTO CAMP">
+            <p>PiQchur es un fotoparque temático de paisajes, escenarios y efectos especiales, ideal para los amantes de la fotografía creativa. Ubicado en el sector de Illuchi – Las Antenas, ofrece un espacio amplio para disfrutar y capturar momentos únicos en un entorno natural y espectacular.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/13.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info14" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>BASÍLICA DE BAÑOS DE AGUA SANTA</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic14.jpg" alt="BASÍLICA DE BAÑOS DE AGUA SANTA">
+            <p>La Basílica de Baños es un santuario en honor a Nuestra Señora de la Virgen del Rosario de Agua Santa, patrona de la ciudad. Este templo de estilo gótico moderado empezó a ser construido en 1904 por Tomás Halflants, párroco de la ciudad en aquel entonces, y fue culminado en 1944 por Fray Sebastián Acosta.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/14.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info15" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>TREKKING AL VOLCÁN TUNGURAHUA</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic15.jpg" alt="TREKKING AL VOLCÁN TUNGURAHUA">
+            <p>El volcán Tungurahua tiene una altura de 5.023 msnm y un diámetro en su base de 14 km. Este volcán activo es la décima montaña más alta del país y puede ser escalado hasta su cima. Si deseas realizar el ascenso, deberás pernoctar en el refugio y levantarte en la madrugada del día siguiente para emprender la caminata hacia la cima.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/15.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info16" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>DINOSAURIOS PARK</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic16.jpg" alt="DINOSAURIOS PARK">
+            <p>Dinosaurios Park es un parque de diversiones temático de dinosaurios en Baños de Agua Santa. Cuenta con un sendero de dinosaurios en ambiente selvático, fósiles reales y réplicas en realidad aumentada. Además, Dinosaurios Park ofrece shows en vivo, un restaurante temático y una dinotienda, proporcionando entretenimiento educativo para toda la familia.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wander
+
+lust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/16.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info17" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>LAS MANOS DE DIOS</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic17.jpg" alt="LAS MANOS DE DIOS">
+            <p>Las Manos de Dios se encuentran dentro del Rancho Ojos del Volcán, ubicado a 2.700 msnm. Estas impresionantes manos emergen de la cima de un espectacular mirador para sostener un puente de madera desde donde podrás disfrutar de los paisajes de Baños y el volcán Tungurahua como telón de fondo.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/17.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info18" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>CASA DEL ÁRBOL O COLUMPIO DEL FIN DEL MUNDO</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic18.jpg" alt="CASA DEL ÁRBOL O COLUMPIO DEL FIN DEL MUNDO">
+            <p>La Casa del Árbol se encuentra en las faldas del volcán Tungurahua, a 2.660 metros sobre el nivel del mar. Es conocida por el famoso columpio del Fin del Mundo, un atractivo turístico donde puedes columpiarte sobre una pendiente pronunciada mientras disfrutas de impresionantes vistas del volcán y su actividad volcánica.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/18.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info19" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>ECO ZOOLÓGICO DE SAN MARTÍN</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic19.jpg" alt="ECO ZOOLÓGICO DE SAN MARTÍN">
+            <p>Eco Zoológico de San Martín es un centro de manejo de fauna silvestre donde podrás observar una amplia variedad de animales, incluidas especies en peligro de extinción como el oso de anteojos y el oso andino. Con una colección de 180 animales distribuidos en 48 especies, el zoológico también cuenta con una sección de animales exóticos como tigres de Bengala blanco, faisanes, pericos australianos, emús y flamencos.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/19.txt')"></button>
+        </div>
+    </div>
+</div>
+
+<div id="ventana_info20" class="ventana_info">
+    <div class="ventana_contenido">
+        <div class="ventana_cerrar" onclick="closeModal()"></div>
+        <h2>WANDERLUST AGENCY BY VICTOR CASTRO</h2>
+        <div class="ventana_cuerpo">
+            <img src="imagesmuseo360/pic20.jpg" alt="WANDERLUST AGENCY BY VICTOR CASTRO">
+            <p>Wanderlust Agency es una agencia de viajes especializada en ofrecer experiencias únicas en Baños de Agua Santa. Con una amplia gama de tours y actividades, incluyendo aventuras extremas, parques temáticos, y sitios turísticos emblemáticos como la Basílica de Baños y las Manos de Dios, Wanderlust Agency te invita a explorar y disfrutar de todos los rincones que esta encantadora ciudad tiene para ofrecer.</p>
+        </div>
+        <div class="ventana_footer">© 2024 Wanderlust Agency
+            <button class="text-aloud-button" onclick="readFromFile('info/20.txt')"></button>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="js/scriptmuseo360.js"></script>
+
+</body>
+</html>

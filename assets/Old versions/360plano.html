@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>360° Image Viewer with Paintings</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
+    <style>
+      #thumbnails-list {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .thumbnail {
+        width: 100px;
+        height: 150px;
+        cursor:pointer;
+      }
+      #modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      #modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      #modal-image {
+        max-height: 80vh;
+        max-width: 80vw;
+      }
+      #modal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgb(185, 60, 60);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+        <audio id="background-music" src="soundtracks.mp3" autoplay loop></audio>
+        <!-- 360 Image -->
+        <img id="city" src="2k.png">
+
+
+        <!-- Painting Thumbnails -->
+        <img id="painting1-thumb" src="img360/pic1.jpg">
+        <img id="painting2-thumb" src="img360/pic2.jpg">
+        <img id="painting3-thumb" src="img360/pic3.jpg">
+        <img id="painting4-thumb" src="img360/pic4.jpg">
+        <img id="painting5-thumb" src="img360/pic5.jpg">
+        <img id="painting6-thumb" src="img360/pic6.jpg">
+        <img id="painting7-thumb" src="img360/pic7.jpg">
+        <img id="painting8-thumb" src="img360/pic8.jpg">
+        <img id="painting9-thumb" src="img360/pic9.jpg">
+        <img id="painting10-thumb" src="img360/pic10.jpg">
+
+
+        <!-- Link Template -->
+        <script id="link" type="text/html">
+          <a-entity class="link"
+            geometry="primitive: plane; height: 0.5; width: 1"
+            material="shader: flat; src: ${thumb}"
+            sound="on: click; src: #click-sound"
+            event-set__mouseenter="scale: 1.2 1.2 1"
+            event-set__mouseleave="scale: 1 1 1"
+            onclick="openModal('${src}', '${name}', '${description}')">
+            <a-text value="${name}" position="0 -0.6 0.01" align="center" color="#FFF"></a-text>
+          </a-entity>
+        </script>
+      </a-assets>
+
+      <!-- 360-degree image -->
+      <a-sky id="image-360" radius="10" src="#city"></a-sky>
+
+      <!-- Paintings Grid -->
+      <a-entity id="links" layout="type: line; margin: 1.5" position="-6 2.5 -5">
+        <a-entity template="src: #link" data-thumb="#painting1-thumb" data-name="LIMITES" data-description="Baños de agua santa se ubica en la provincia de Tungurahua. Limita:, &#10; " data-src="img360/pic1.jpg"></a-entity>
+        <a-entity template="src: #link" data-thumb="#painting2-thumb" data-name="EL VUELO DEL CONDOR" data-description="En esta imagen se puede observar una pintura interesante" data-src="img360/pic2.jpg"></a-entity>
+        <a-entity template="src: #link" data-thumb="#painting3-thumb" data-name="CANOPY" data-description="En esta imagen se puede observar una pintura interesante" data-src="img360/pic3.jpg"></a-entity>
+        <a-entity template="src: #link" data-thumb="#painting4-thumb" data-name="ZIPLINE" data-description="En esta imagen se puede observar una pintura interesante" data-src="img360/pic4.jpg"></a-entity>
+        <a-entity template="src: #link" data-thumb="#painting5-thumb" data-name="RAFTING" data-description="En esta imagen se puede observar una pintura interesante" data-src="img360/pic5.jpg"></a-entity>
+        <a-entity template="src: #link" data-thumb="#painting6-thumb" data-name="PARAPENTE" data-description="En esta imagen se puede observar una pintura interesante" data-src="img360/pic6.jpg"></a-entity>
+        <a-entity template="src: #link" data-thumb="#painting7-thumb" data-name="EL PAILON DEL DIABLO" data-description="En esta imagen se puede observar una pintura interesante" data-src="img360/pic7.jpg"></a-entity>
+        <a-entity template="src: #link" data-thumb="#painting8-thumb" data-name="PUENTING" data-description="En esta imagen se puede observar una pintura interesante" data-src="img360/pic8.jpg"></a-entity>
+        <a-entity template="src: #link" data-thumb="#painting9-thumb" data-name="ANIMAL PARK" data-description="En esta imagen se puede observar una pintura interesante" data-src="img360/pic9.jpg"></a-entity>
+        <a-entity template="src: #link" data-thumb="#painting10-thumb" data-name="FABRICA DE CHOCOLATE" data-description="En esta imagen se puede observar una pintura interesante" data-src="img360/pic10.jpg"></a-entity>
+      </a-entity>
+
+      <!-- Camera + Cursor -->
+      <a-camera id="camera" wasd-controls="enabled: true" look-controls="enabled: true" position="0 1.6 0">
+        <a-cursor id="cursor" color="white" scale="0.5 0.5 0.5"></a-cursor>
+      </a-camera>
+
+      <!-- Mute Button -->
+      <div style="position: absolute; top: 10px; right: 10px;">
+        <button id="mute-button" onclick="toggleMute()">Mute</button>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="1" onchange="setVolume(this.value)">
+      </div>
+
+      <!-- Thumbnails List -->
+      <div id="thumbnails-list">
+        <img class="thumbnail" src="path-to-painting1-thumb.jpg" onclick="openModal('url-de-la-imagen-1', 'Pintura 1', 'Descripción de la pintura 1')">
+        <img class="thumbnail" src="path-to-painting2-thumb.jpg" onclick="openModal('url-de-la-imagen-2', 'Pintura 2', 'Descripción de la pintura 2')">
+        <img class="thumbnail" src="path-to-painting3-thumb.jpg" onclick="openModal('url-de-la-imagen-3', 'Pintura 3', 'Descripción de la pintura 3')">
+        <img class="thumbnail" src="path-to-painting4-thumb.jpg" onclick="openModal('url-de-la-imagen-4', 'Pintura 4', 'Descripción de la pintura 4')">
+        <img class="thumbnail" src="path-to-painting5-thumb.jpg" onclick="openModal('url-de-la-imagen-5', 'Pintura 5', 'Descripción de la pintura 5')">
+        <img class="thumbnail" src="path-to-painting6-thumb.jpg" onclick="openModal('url-de-la-imagen-6', 'Pintura 6', 'Descripción de la pintura 6')">
+        <img class="thumbnail" src="path-to-painting7-thumb.jpg" onclick="openModal('url-de-la-imagen-7', 'Pintura 7', 'Descripción de la pintura 7')">
+        <img class="thumbnail" src="path-to-painting8-thumb.jpg" onclick="openModal('url-de-la-imagen-8', 'Pintura 8', 'Descripción de la pintura 8')">
+        <img class="thumbnail" src="path-to-painting9-thumb.jpg" onclick="openModal('url-de-la-imagen-9', 'Pintura 9', 'Descripción de la pintura 9')">
+        <img class="thumbnail" src="path-to-painting10-thumb.jpg" onclick="openModal('url-de-la-imagen-10', 'Pintura 10', 'Descripción de la pintura 10')">
+      </div>
+    </a-scene>
+
+    <!-- Modal for Viewing Paintings -->
+    <div id="modal">
+      <div id="modal-content">
+        <button id="modal-close" onclick="closeModal()">X</button>
+        <img id="modal-image" src="" alt="Painting Image">
+        <h2 id="modal-title"></h2>
+        <p id="modal-description"></p>
+      </div>
+    </div>
+
+    <script>
+      AFRAME.registerComponent('camera-controls', {
+        init: function () {
+          this.handleKeyDown = this.handleKeyDown.bind(this);
+          window.addEventListener('keydown', this.handleKeyDown);
+        },
+        tick: function () {
+          const position = this.el.getAttribute('position');
+          const maxPosition = 5; // Adjust this value as needed
+
+          position.x = Math.min(Math.max(position.x, -maxPosition), maxPosition);
+          position.y = Math.min(Math.max(position.y, -maxPosition), maxPosition);
+          position.z = Math.min(Math.max(position.z, -maxPosition), maxPosition);
+
+          this.el.setAttribute('position', position);
+        },
+
+        handleKeyDown: function (event) {
+          if (event.key === 'Escape') {
+            closeModal();
+            event.preventDefault();
+          }
+        }
+      });
+
+      document.querySelector('a-camera').setAttribute('camera-controls', '');
+
+      function openModal(src, name, description) {
+        const modal = document.getElementById('modal');
+        modal.style.display = 'flex';
+        document.getElementById('modal-image').src = src;
+        document.getElementById('modal-title').innerText = name;
+        document.getElementById('modal-description').innerText = description;
+      }
+
+      function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.style.display = 'none';
+      }
+
+      function toggleMute() {
+        const audio = document.getElementById('background-music');
+        audio.muted = !audio.muted;
+      }
+
+      function setVolume(value) {
+        const audio = document.getElementById('background-music');
+        audio.volume = value;
+      }
+    </script>
+  </body>
+</html>

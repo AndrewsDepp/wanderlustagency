@@ -1,0 +1,366 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    background-color: #ffffff;
+    position: relative;
+}
+
+header .logo {
+    max-width: 145px;
+    position: absolute;
+    left: 1.25rem;
+}
+
+.header-text {
+    text-align: center;
+    flex: 1;
+}
+
+header h1, header p {
+    margin: 0;
+}
+
+header h1 {
+    font-weight: bold;
+    font-size: 2.1875rem; 
+}
+
+header p {
+    margin-top: 0.625rem; 
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-link {
+    color: white;
+    padding: 0.875rem 1.25rem;
+    text-decoration: none;
+    text-align: center;
+}
+
+.nav-link:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.nav-section {
+    padding-top: 3.75rem;
+    margin-top: -3.75rem;
+}
+
+.gallery {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.gallery .slick-slide {
+    margin: 0 0.3125rem;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+.hero {
+    margin-top: 2.5rem;
+    padding: 1.25rem;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.subtitles {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1.25rem;
+}
+
+.subtitle-left, .subtitle-right {
+    width: 45%;
+}
+
+.container {
+    padding: 3.75rem;
+}
+
+h1, h2, h3 {
+    color: #000000;
+}
+
+.tour-package {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.625rem;
+    background-color: #fff;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tour-package:hover {
+    transform: translateY(-0.3125rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.tour-info {
+    width: 60%;
+}
+
+.tour-image {
+    width: 45%;
+    height: auto;
+    border-radius: 0.9375rem;
+    object-fit: scale-down;
+}
+
+#reservarBtn, #ingresarBtn {
+    margin-bottom: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.3125rem;
+    background-color: #00b31e;
+    color: white;
+    cursor: pointer;
+    display: block;
+    width: fit-content;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#reservarBtn:hover, #ingresarBtn:hover {
+    background-color: #000000;
+    transform: translateY(-0.1875rem);
+}
+
+#accessCode {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3125rem;
+    width: 26%;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    transition: background-color 0.3s;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 2rem;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 0.625rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.modal-content p {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+}
+
+.modal-content .correct {
+    color: green;
+    font-weight: bold;
+}
+
+.modal-content .incorrect {
+    color: red;
+    font-weight: bold;
+}
+
+.modal-content button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    background-color: #00b31e;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #000000;
+}
+
+.map {
+    text-align: center;
+    margin-top: 1.25rem;
+}
+
+.testimonial {
+    background-color: #f9f9f9;
+    border-left: 0.25rem solid #00b31e;
+    margin: 1.25rem 0;
+    padding: 0.625rem 1.25rem;
+}
+
+.testimonial {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease-out, max-height 0.5s ease-out;
+}
+
+.testimonial.show {
+    opacity: 1;
+    max-height: 200px;
+}
+
+.hidden {
+    display: none;
+}
+
+#show-more-btn {
+    display: block;
+    margin-top: 0.625rem;
+    background-color: #00b31e;
+    color: white;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#show-more-btn:hover {
+    background-color: #000000;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.social-icon img {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover img {
+    transform: scale(1.2);
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 0.625rem 0;
+}
+
+.agency-name {
+    font-size: 0.875rem;
+    font-weight: bold;
+    margin-bottom: 0.3125rem;
+}
+
+.rights {
+    font-size: 0.625rem;
+    margin-bottom: 0.625rem;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    header .logo {
+        position: static;
+        margin-bottom: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    .nav-link {
+        padding: 0.75rem;
+    }
+
+    .hero {
+        margin-top: 1.25rem;
+        padding: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .subtitles {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .subtitle-left, .subtitle-right {
+        width: 90%;
+        margin-bottom: 1rem;
+    }
+
+    .container {
+        padding: 2rem;
+    }
+
+    .tour-package {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tour-info, .tour-image {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}

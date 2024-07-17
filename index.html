@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración de la codificación de caracteres y vista del documento -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust Agency</title>
+    
+    <!-- Enlaces a la librería Slick para crear carruseles (galerías de imágenes deslizantes) -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    
+    <!-- Enlace a la hoja de estilos CSS personalizada -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+    <!-- Sección del encabezado con el logotipo y el nombre de la agencia -->
+    <section class="nav-section" id="home">
+    <header>
+        <!-- Imagen del logotipo -->
+        <img src="assets/images/logocolor.png" alt="Vics Travel Logo" class="logo">
+        <!-- Título y descripción de la agencia -->
+        <div>
+            <h1>Wanderlust Agency</h1>
+            <p>Explorando el futuro, conquistando la innovación</p>
+        </div>
+    </header>
+    </section>
+  
+    <!-- Barra de navegación con enlaces a diferentes secciones de la página -->
+    <nav id="navbar">
+        <a href="#home" class="nav-link">INICIO</a>
+        <a href="#who" class="nav-link">QUIENES SOMOS</a>
+        <a href="#packages" class="nav-link">SERVICIOS</a>
+        <a href="#map" class="nav-link">UBICACIÓN</a>
+        <a href="#testimonials" class="nav-link">RESEÑAS</a>
+        <a href="#contact" class="nav-link">CONTACTO</a>
+    </nav>
+
+    <!-- Sección para el carrusel de imágenes -->
+    <section class="nav-section" id="home">
+        <div class="gallery">
+            <!-- Cada div contiene una imagen que será parte del carrusel -->
+            <div><img src="https://i.ibb.co/GQ5jscL/para-ajustar.jpg" alt="Image 1"></div>
+            <div><img src="https://i.ibb.co/HrFyNTG/1720584341033.jpg" alt="Image 2"></div>
+            <div><img src="https://i.ibb.co/ct0RX3P/3c.jpg" alt="Image 3"></div>
+            <div><img src="https://i.ibb.co/fGHby95/1280por720-copy.jpg" alt="Image 4"></div>
+            <div><img src="https://i.ibb.co/3rQJ7mB/5c.jpg" alt="Image 5"></div>
+        </div>
+    </section>
+
+    <!-- Sección con la misión y visión de la agencia -->
+    <section class="hero nav-section" id="who">
+        <div class="subtitles">
+            <div class="subtitle-left">
+                <h2>MISIÓN</h2>
+                <p>Facilitar experiencias de turismo virtual enriquecedoras para familias, promoviendo la construcción activa de conocimientos a través de museos virtuales. Buscamos ir más allá en la educación, creando espacios para construir narrativas y relatos sobre diferentes sitios, fortaleciendo así la conexión y el aprendizaje familiar. Queremos ser un catalizador para el crecimiento educativo y emocional de las familias a través de nuestras experiencias virtuales. </p>
+            </div>
+            <div class="subtitle-right">
+                <h2>VISIÓN</h2>
+                <p>Nos proponemos convertirnos en la agencia de viajes virtual líder en la promoción del turismo familiar a través de museos virtuales, inspirando a las familias a explorar de manera interactiva y educativa. Aspiramos a ser reconocidos por ofrecer experiencias memorables que estimulen el aprendizaje y la creatividad, transformando la forma en que las familias exploran el mundo juntas desde la comodidad de sus hogares. </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de los paquetes turísticos ofrecidos -->
+    <div class="container">
+        <section id="packages" class="nav-section">
+            <h2>RECORRIDOS</h2>
+
+            <!-- Información sobre un paquete turístico específico -->
+            <div class="tour-package">
+                <div class="tour-info">
+                    <h2>Museo Virtual 360</h2>
+                    <p>Duración: 20 - 30 minutos</p>
+                    <p>Virtual - Online</p>
+                    <p>Precio: 5.00 $dólares</p>
+                    <!-- Botones para reservar e ingresar al tour -->
+                    <button id="reservarBtn">Reservar</button>
+                    <button id="ingresarBtn">Ingresar</button>
+                    <input type="password" id="accessCode" placeholder="Ingrese código de acceso">
+                </div>
+                <!-- Imagen del paquete turístico -->
+                <img src="https://i.ibb.co/fGHby95/1280por720-copy.jpg" alt="Museo 360" class="tour-image">
+            </div>
+        </section>
+
+        <!-- Sección con el mapa de ubicación -->
+        <section id="map" class="nav-section">
+            <h2>Encuéntranos en el mapa</h2>
+            <div class="map">
+                <!-- Mapa interactivo de Google Maps -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d997.4524094615916!2d-78.45275576973967!3d-0.1195318013629803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sec!4v1720483379203!5m2!1ses!2sec" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+        <!-- Sección con los testimonios de los clientes -->
+        <section id="testimonials" class="nav-section">
+            <h2>COMENTARIOS</h2>
+            <!-- Cada div representa un comentario de un cliente -->
+            <div class="testimonial">
+                <p>"Tuvimos una experiencia increíble con Wanderlust. Todo estuvo perfectamente organizado y los lugares que visitamos eran impresionantes."</p>
+                <p>- María Pérez</p>
+            </div>
+            <div class="testimonial">
+                <p>"Nuestro viaje a Baños fue emocionante. Gracias a esta maravillosa agencia por hacer de este un sueño hecho realidad."</p>
+                <p>- Juan García</p>
+            </div>
+            <div class="testimonial">
+                <p>"Tuvimos una experiencia increíble con Wanderlust. Todo estuvo perfectamente organizado y los lugares que visitamos eran impresionantes."</p>
+                <p>- María Pérez</p>
+            </div>
+            <!-- Los comentarios ocultos se pueden mostrar con un botón -->
+            <div class="testimonial hidden">
+                <p>"Nuestro viaje a Baños fue emocionante. Gracias a esta maravillosa agencia por hacer de este un sueño hecho realidad."</p>
+                <p>- Juan García</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"El servicio fue excelente y la atención al cliente fue excepcional. Recomiendo altamente esta agencia."</p>
+                <p>- Ana López</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"Mis vacaciones fueron perfectas gracias a la organización y profesionalismo del equipo de Wanderlust."</p>
+                <p>- Carlos Martínez</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"Los tours ofrecidos por Wanderlust son una excelente manera de explorar Ecuador. ¡Definitivamente volveré!"</p>
+                <p>- Verónica Zambrano</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"Me encantó la experiencia virtual del museo 360. Sería genial agregar más información interactiva sobre los lugares visitados."</p>
+                <p>- Andrés Guerrero</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"La página web es fácil de navegar y el proceso de reserva fue muy sencillo. ¡Excelente trabajo!"</p>
+                <p>- Patricia Vargas</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"El museo virtual 360 es una adición impresionante a la página web. Disfruté explorando los tours pasados con imágenes detalladas."</p>
+                <p>- Laura Jiménez</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"Sería útil tener más opciones de pago disponibles, como tarjetas de crédito además de WhatsApp."</p>
+                <p>- David Mendoza</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"Los itinerarios están bien planificados y permiten explorar lo mejor de cada destino. Sin embargo, podrían considerar incluir más actividades culturales."</p>
+                <p>- Cristina Espinosa</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"La funcionalidad del museo 360 es genial, pero sería bueno tener más descripciones y datos históricos de los lugares."</p>
+                <p>- Luis Ramírez</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"La página web es moderna y fácil de usar, pero encontré un poco complicado el proceso de reserva a través de WhatsApp."</p>
+                <p>- Elena Torres</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"Recomiendo Wanderlust por su excelente servicio al cliente y la calidad de sus tours. ¡Una experiencia inolvidable!"</p>
+                <p>- Santiago Gutiérrez</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"El museo virtual 360 me permitió revivir los tours de una manera única y fascinante. ¡Gran adición a la página web!"</p>
+                <p>- Gabriela Rivas</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"Hubo algunos detalles en la organización del itinerario que podrían mejorarse para una experiencia aún más fluida."</p>
+                <p>- Jorge Flores</p>
+            </div>
+            <div class="testimonial hidden">
+                <p>"Los precios son competitivos y el valor por dinero es excelente. ¡Definitivamente regresaré para más aventuras!"</p>
+                <p>- Valeria Paredes</p>
+            </div>
+                        
+            <!-- Botón para mostrar más comentarios -->
+            <button id="show-more-btn">Ver más</button>
+        </section>
+
+        <!-- Sección de contacto con iconos de redes sociales -->
+        <section id="contact" class="nav-section">
+            <h2>Contáctanos</h2>
+            <div class="social-icons">
+                <!-- Enlaces a perfiles de redes sociales con iconos correspondientes -->
+                <a href="https://www.facebook.com/profile.php?id=61562002362627&mibextid=ZbWKwL" target="_blank" class="social-icon">
+                    <img src="assets/images/face.png" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/wanderlustagencys?utm_source=qr&igsh=bGFhbGFoNmY3YTFw" target="_blank" class="social-icon">
+                    <img src="assets/images/insta.png" alt="Instagram">
+                </a>
+                <a href="https://api.whatsapp.com/send?phone=593981395666" target="_blank" class="social-icon">
+                    <img src="assets/images/whats.png" alt="WTSP">
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Pie de página con información de derechos de autor -->
+    <footer>
+        <p class="agency-name">&copy;2024 Wanderlust Agency</p>
+        <p class="rights">Todos los derechos reservados.</p>
+        <img src="assets/images/adlogo.png" alt="Icono" class="icon">
+    </footer>
+
+    <!-- Enlace a la librería jQuery necesaria para el funcionamiento de algunas funcionalidades -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Enlace a la librería Slick para el carrusel -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- Enlace a un archivo JavaScript personalizado -->
+    <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>

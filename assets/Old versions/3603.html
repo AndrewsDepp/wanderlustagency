@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>360° Image Viewer with Paintings</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
+    <style>
+      /* Estilos CSS (sin cambios) */
+    </style>
+    <script>
+      // Componente personalizado para abrir el modal
+      AFRAME.registerComponent('open-modal', {
+        schema: {
+          src: { type: 'string' },
+          name: { type: 'string' },
+          description: { type: 'string' }
+        },
+        init: function () {
+          this.el.addEventListener('click', () => {
+            const data = this.data;
+            openModal(data.src, data.name, data.description);
+          });
+        }
+      });
+
+      // Función para abrir el modal
+      function openModal(src, name, description) {
+        const modal = document.getElementById('modal');
+        modal.style.display = 'flex';
+        
+        // Cambiamos la forma de cargar la imagen
+        const modalImage = document.getElementById('modal-image');
+        modalImage.onload = function() {
+          // La imagen se ha cargado correctamente
+          modalImage.style.display = 'block';
+        };
+        modalImage.onerror = function() {
+          // Error al cargar la imagen
+          console.error('Error loading image:', src);
+          modalImage.style.display = 'none';
+        };
+        modalImage.src = src;
+        
+        document.getElementById('modal-title').innerText = name;
+        document.getElementById('modal-description').innerText = description;
+      }
+
+      // Función para cerrar el modal
+      function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.style.display = 'none';
+      }
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <!-- Recursos de audio -->
+        <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+        <audio id="background-music" src="soundtrack.mp3" loop></audio>
+        <!-- Imagen de fondo 360 -->
+        <img id="city" src="2k.png">
+        <!-- Miniaturas de pinturas -->
+        <img id="painting1-thumb" src="img360/pic1.jpg">
+        <img id="painting2-thumb" src="img360/pic2.jpg">
+      </a-assets>
+
+      <!-- Imagen de fondo 360 grados -->
+      <a-sky id="image-360" radius="9" src="#city"></a-sky>
+
+      <!-- Contenedor de enlaces 3D -->
+      <a-entity id="links" layout="type: box; columns: 2; margin: 2.5" position="-5 0 -6">
+        <a-entity>
+          <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic1.jpg; name: 'LIMITES'; description: 'Esta es una imagen de la pintura de los límites. Esta es una imagen de la pintura de los límites. Esta es una imagen de la pintura de los límites. Esta es una imagen de la pintura de los límites. Esta es una imagen de la pintura de los límites. Esta es una imagen de la pintura de los límites. Esta es una imagen de la pintura de los límites. Esta es una imagen de la pintura de los límites. Esta es una imagen de la pintura de los límites. Esta es una imagen de la pintura de los límites.'" material="src: #painting1-thumb"></a-box>
+          <a-text value="LIMITES" align="center" position="0 -1.5 0" color="#FFF"></a-text>
+        </a-entity>
+        <a-entity>
+          <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic2.jpg; name: 'Pintura 2'; description: 'Descripción de la pintura 2. Descripción de la pintura 2. Descripción de la pintura 2. Descripción de la pintura 2. Descripción de la pintura 2. Descripción de la pintura 2. Descripción de la pintura 2. Descripción de la pintura 2. Descripción de la pintura 2. Descripción de la pintura 2.'" material="src: #painting2-thumb"></a-box>
+          <a-text value="Pintura 2" align="center" position="0 -1.5 0" color="#FFF"></a-text>
+        </a-entity>
+      </a-entity>
+
+      <!-- Cámara y cursor -->
+      <a-camera id="camera" wasd-controls="enabled: true" look-controls="enabled: true" position="0 1.6 0">
+        <a-cursor id="cursor" color="white" scale="0.5 0.5 0.5"></a-cursor>
+      </a-camera>
+
+      <!-- Modal para ver pinturas -->
+      <div id="modal">
+        <div id="modal-content">
+          <button id="modal-close" onclick="closeModal()">X</button>
+          <img id="modal-image" src="" alt="Painting Image">
+          <div>
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+            <ul>
+              <li>Viñeta 1</li>
+              <li>Viñeta 2</li>
+            </ul>
+            <p id="modal-footer">Pie de página con texto pequeño.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controles de audio -->
+      <div style="position: absolute; top: 10px; right: 10px;">
+        <button id="mute-button" onclick="toggleMute()">Mute</button>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.3" onchange="setVolume(this.value)">
+      </div>
+    </a-scene>
+
+    <script>
+      // Componente para controlar la cámara
+      AFRAME.registerComponent('camera-controls', {
+        init: function () {
+          // Ya no es necesario manejar la tecla Esc aquí
+        },
+        tick: function () {
+          // Limitar el movimiento de la cámara
+          const position = this.el.getAttribute('position');
+          const maxPosition = 5; // Ajustar este valor según sea necesario
+
+          position.x = Math.min(Math.max(position.x, -maxPosition), maxPosition);
+          position.y = Math.min(Math.max(position.y, -maxPosition), maxPosition);
+          position.z = Math.min(Math.max(position.z, -maxPosition), maxPosition);
+
+          this.el.setAttribute('position', position);
+        }
+      });
+
+      // Aplicar el componente de control de cámara
+      document.querySelector('a-camera').setAttribute('camera-controls', '');
+
+      // Función para alternar el silencio del audio
+        function toggleMute() {
+        const audio = document.getElementById('background-music');
+        audio.muted = !audio.muted;
+      }
+
+      // Función para ajustar el volumen del audio
+      function setVolume(value) {
+        const audio = document.getElementById('background-music');
+        audio.volume = value;
+      }
+
+      // Iniciar la música de fondo al 30% del volumen
+      window.addEventListener('load', function() {
+        const audio = document.getElementById('background-music');
+        audio.volume = 0.4;
+        audio.play();
+      });
+    </script>
+  </body>
+</html>

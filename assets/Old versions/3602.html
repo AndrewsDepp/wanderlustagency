@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>360° Image Viewer with Paintings</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
+    <style>
+      #thumbnails-list {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .thumbnail {
+        width: 100px;
+        height: 150px;
+        cursor: pointer;
+      }
+      #modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      #modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      #modal-image {
+        max-height: 80vh;
+        max-width: 80vw;
+      }
+      #modal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgb(185, 60, 60);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      AFRAME.registerComponent('open-modal', {
+        schema: {
+          src: { type: 'string' },
+          name: { type: 'string' },
+          description: { type: 'string' }
+        },
+        init: function () {
+          this.el.addEventListener('click', () => {
+            const data = this.data;
+            openModal(data.src, data.name, data.description);
+          });
+        }
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === "Escape") {
+          closeModal();
+        }
+      });
+
+      function openModal(src, name, description) {
+        const modal = document.getElementById('modal');
+        modal.style.display = 'flex';
+        document.getElementById('modal-image').src = src;
+        document.getElementById('modal-title').innerText = name;
+        document.getElementById('modal-description').innerText = description;
+      }
+
+      function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.style.display = 'none';
+      }
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <!-- Audio -->
+        <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+        <audio id="background-music" src="soundtracks.mp3" autoplay loop></audio>
+        <!-- 360 Image -->
+        <img id="city" src="2k.png">
+        <!-- Painting Thumbnails -->
+        <img id="painting1-thumb" src="img360/pic1.jpg">
+        <img id="painting2-thumb" src="img360/pic2.jpg">
+        <img id="painting3-thumb" src="img360/pic3.jpg">
+        <img id="painting4-thumb" src="img360/pic4.jpg">
+        <img id="painting5-thumb" src="img360/pic5.jpg">
+        <img id="painting6-thumb" src="img360/pic6.jpg">
+        <img id="painting7-thumb" src="img360/pic7.jpg">
+        <img id="painting8-thumb" src="img360/pic8.jpg">
+        <img id="painting9-thumb" src="img360/pic9.jpg">
+        <img id="painting10-thumb" src="img360/pic10.jpg">
+
+
+        <img id="painting11-thumb" src="img360/pic1.jpg">
+        <img id="painting12-thumb" src="img360/pic2.jpg">
+        <img id="painting13-thumb" src="img360/pic3.jpg">
+        <img id="painting14-thumb" src="img360/pic4.jpg">
+        <img id="painting15-thumb" src="img360/pic5.jpg">
+        <img id="painting16-thumb" src="img360/pic6.jpg">
+        <img id="painting17-thumb" src="img360/pic7.jpg"> 
+        <img id="painting18-thumb" src="img360/pic8.jpg">
+        <img id="painting19-thumb" src="img360/pic9.jpg">
+        <img id="painting20-thumb" src="img360/pic10.jpg">
+      </a-assets>
+
+      <!-- 360-degree image -->
+      <a-sky id="image-360" radius="9" src="#city"></a-sky> <!--the smaller the radius, the greater the mobility -->
+
+      <!-- 3D Boxes Links Wrapper -->
+      <a-entity id="links" layout="type: box; columns: 5; margin: 2.5" position="-5 0 -6"><!-- x y z -->
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic1.jpg; name: 'LIMITES'; description: 'esta es una imagen de la pintura de los limites'" material="src: #painting1-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic2.jpg; name: 'Pintura 2'; description: 'Descripción de la pintura 2'" material="src: #painting2-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic3.jpg; name: 'Pintura 3'; description: 'Descripción de la pintura 3'" material="src: #painting3-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic4.jpg; name: 'Pintura 4'; description: 'Descripción de la pintura 4'" material="src: #painting4-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic5.jpg; name: 'Pintura 5'; description: 'Descripción de la pintura 5'" material="src: #painting5-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic6.jpg; name: 'Pintura 6'; description: 'Descripción de la pintura 6'" material="src: #painting6-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic7.jpg; name: 'Pintura 7'; description: 'Descripción de la pintura 7'" material="src: #painting7-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic8.jpg; name: 'Pintura 8'; description: 'Descripción de la pintura 8'" material="src: #painting8-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic9.jpg; name: 'Pintura 9'; description: 'Descripción de la pintura 9'" material="src: #painting9-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic10.jpg; name: 'Pintura 10'; description: 'Descripción de la pintura 10'" material="src: #painting10-thumb"></a-box>
+      </a-entity>
+
+      <a-entity id="links" layout="type: box; columns: 5; margin: 2.5" position="-5 0 6">
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic1.jpg; name: 'Pintura 11'; description: 'Descripción de la pintura 1'" material="src: #painting1-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic2.jpg; name: 'Pintura 12'; description: 'Descripción de la pintura 2'" material="src: #painting2-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic3.jpg; name: 'Pintura 13'; description: 'Descripción de la pintura 3'" material="src: #painting3-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic4.jpg; name: 'Pintura 14'; description: 'Descripción de la pintura 4'" material="src: #painting4-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic5.jpg; name: 'Pintura 15'; description: 'Descripción de la pintura 5'" material="src: #painting5-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic6.jpg; name: 'Pintura 16'; description: 'Descripción de la pintura 6'" material="src: #painting6-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic7.jpg; name: 'Pintura 17'; description: 'Descripción de la pintura 7'" material="src: #painting7-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic8.jpg; name: 'Pintura 18'; description: 'Descripción de la pintura 8'" material="src: #painting8-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic9.jpg; name: 'Pintura 19'; description: 'Descripción de la pintura 9'" material="src: #painting9-thumb"></a-box>
+        <a-box color="#FDFEFE" depth="0.1" height="2" width="1" open-modal="src: img360/pic10.jpg; name: 'Pintura 20'; description: 'Descripción de la pintura 10'" material="src: #painting10-thumb"></a-box>
+      </a-entity>
+      <!-- Camera + Cursor -->
+      <a-camera id="camera" wasd-controls="enabled: true" look-controls="enabled: true" position="0 1.6 0">
+        <a-cursor id="cursor" color="white" scale="0.5 0.5 0.5"></a-cursor>
+      </a-camera>
+
+      <!-- Modal for Viewing Paintings -->
+      <div id="modal">
+        <div id="modal-content">
+          <button id="modal-close" onclick="closeModal()">X</button>
+          <img id="modal-image" src="" alt="Painting Image">
+          <h2 id="modal-title"></h2>
+          <p id="modal-description"></p>
+        </div>
+      </div>
+
+      <!-- Mute Button -->
+      <div style="position: absolute; top: 10px; right: 10px;">
+        <button id="mute-button" onclick="toggleMute()">Mute</button>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="1" onchange="setVolume(this.value)">
+      </div>
+    </a-scene>
+
+    <script>
+      AFRAME.registerComponent('camera-controls', {
+        init: function () {
+          this.handleKeyDown = this.handleKeyDown.bind(this);
+          window.addEventListener('keydown', this.handleKeyDown);
+        },
+        tick: function () {
+          const position = this.el.getAttribute('position');
+          const maxPosition = 5; // Adjust this value as needed
+
+          position.x = Math.min(Math.max(position.x, -maxPosition), maxPosition);
+          position.y = Math.min(Math.max(position.y, -maxPosition), maxPosition);
+          position.z = Math.min(Math.max(position.z, -maxPosition), maxPosition);
+
+          this.el.setAttribute('position', position);
+        },
+
+        handleKeyDown: function (event) {
+          if (event.key === 'Escape') {
+            closeModal();
+            event.preventDefault();
+          }
+        }
+      });
+
+      document.querySelector('a-camera').setAttribute('camera-controls', '');
+
+      function toggleMute() {
+        const audio = document.getElementById('background-music');
+        audio.muted = !audio.muted;
+      }
+
+      function setVolume(value) {
+        const audio = document.getElementById('background-music');
+        audio.volume = value;
+      }
+    </script>
+  </body>
+</html>
